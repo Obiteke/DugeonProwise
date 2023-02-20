@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class DungeonManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject TilePrefab, PlayerLPrefab, PlayerRPrefab;
+    GameObject TilePrefab, PlayerLPrefab, PlayerRPrefab, _board;
 
     [SerializeField]
     float rows, columns = 0;
@@ -17,7 +17,7 @@ public class DungeonManager : MonoBehaviour
     [HideInInspector]
     public List<GameObject> tiles = new List<GameObject>();
 
-
+    
 
     private Vector2 _moveInput;
     private bool _isMoving = false;
@@ -37,7 +37,7 @@ public class DungeonManager : MonoBehaviour
         {
             for (int j = 0; j < columns; j++)
             {
-                var tile = Instantiate(TilePrefab, new Vector3(i, 0, j), this.transform.rotation);
+                var tile = Instantiate(TilePrefab, new Vector3(i, 0, j), this.transform.rotation, _board.transform);
                 tile.GetComponent<DungeonTile>().Position = new Vector3(i, 0, j);
                 tiles.Add(tile);
 
