@@ -142,7 +142,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382646dbd043ab249a6f50c169012993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 0
   Position: {x: 0, y: 0, z: 0}
+  HasPlayerL: 0
+  HasPlayerR: 0
+  OpenDoor: 0
+  Walkable: 0
+  _doorTile: {fileID: 0}
 --- !u!1 &7093706013239673876
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +211,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a8c6285d92eea694d95baacf23533349, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
