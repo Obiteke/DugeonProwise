@@ -83,6 +83,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5396522619985570100, guid: 6d2791acc01970b48a5b1d2488122086, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 35e05f00ff763054993c402af2dc8f1b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d2791acc01970b48a5b1d2488122086, type: 3}
 --- !u!1 &9053252674554690315 stripped
@@ -102,4 +106,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac82ffaa466ae64fb9c24657eae63d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkeletonScript: {fileID: 0}
   Position: {x: 0, y: 0, z: 0}

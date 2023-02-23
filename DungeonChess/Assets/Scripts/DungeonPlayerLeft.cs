@@ -27,6 +27,9 @@ public class DungeonPlayerLeft : MonoBehaviour
     private float _timerLeft = 0.6f;
     private float _currTimerLeft;
 
+    private Vector3 JShoulderPosition;
+    private Vector3 JHandPosition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,8 +43,11 @@ public class DungeonPlayerLeft : MonoBehaviour
     void Update()
     {
         _oldPosition = Position;
-        Vector3 JHandPosition = NuitrackManager.Users.Current.Skeleton.GetJoint(SkeletonScript.GetComponent<NativeAvatar>().typeJoint[8]).Position;
-        Vector3 JShoulderPosition = NuitrackManager.Users.Current.Skeleton.GetJoint(SkeletonScript.GetComponent<NativeAvatar>().typeJoint[4]).Position;
+        if (NuitrackManager.Users != null)
+        {
+            JHandPosition = NuitrackManager.Users.Current.Skeleton.GetJoint(SkeletonScript.GetComponent<NativeAvatar>().typeJoint[8]).Position;
+            JShoulderPosition = NuitrackManager.Users.Current.Skeleton.GetJoint(SkeletonScript.GetComponent<NativeAvatar>().typeJoint[4]).Position;
+        }
         
         if (!_timerEnd)
         {
@@ -151,6 +157,15 @@ public class DungeonPlayerLeft : MonoBehaviour
                 if (tile.GetComponent<DungeonTile>().HasStone)
                 {
                     DMScript.Stone.GetComponent<DungeonStone>().MoveStone(_oldPosition);
+                }
+                if (tile.GetComponent<DungeonTile>().HasMonster)
+                {
+                    Destroy(DMScript.Monster);
+                }
+                if (tile.GetComponent<DungeonTile>().HasChess)
+                {
+                    Destroy(DMScript.Chess);
+                    FindObjectOfType<DungeonEndScreen>().YouWonScreen();
                 }
                 tile.GetComponent<DungeonTile>().HasPlayerL = true;
                 transform.position = tile.GetComponent<DungeonTile>().transform.position;

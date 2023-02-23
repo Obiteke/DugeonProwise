@@ -7,9 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2603908728862896277, guid: 27e4e7b5d123cd3428b10ce929bab6b7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b04ee5125a8f2e478859f6e07c91b32, type: 2}
     - target: {fileID: 3826480958363413489, guid: 27e4e7b5d123cd3428b10ce929bab6b7, type: 3}
       propertyPath: m_Name
       value: Tile Empty
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093706013239673876, guid: 27e4e7b5d123cd3428b10ce929bab6b7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7612388111181992444, guid: 27e4e7b5d123cd3428b10ce929bab6b7, type: 3}
       propertyPath: Type

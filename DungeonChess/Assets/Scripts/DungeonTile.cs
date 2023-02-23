@@ -11,8 +11,8 @@ public class DungeonTile : MonoBehaviour
     [HideInInspector]
     public bool HasPlayerL, HasPlayerR;
 
-    [HideInInspector]
-    public bool OpenDoor, Walkable, HasStone;
+    //[HideInInspector]
+    public bool OpenDoor, Walkable, HasStone, HasMonster, HasChess;
 
     [SerializeField]
     private GameObject[] _buttonTile;
@@ -86,6 +86,11 @@ public class DungeonTile : MonoBehaviour
                 }
         }
     }
+    public void TilesAppear()
+    {
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+    }
+
     public bool IsDoorOpen()
     {
         var buttons = _buttonTile.Where(b => b.gameObject.GetComponent<DungeonTile>().OpenDoor);

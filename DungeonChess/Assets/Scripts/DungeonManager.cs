@@ -6,13 +6,14 @@ using UnityEngine.InputSystem;
 public class DungeonManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject TilePrefab, TileButtonPrefab, TileDoorPrefab, TileWallPrefab, TileEmptyPrefab, PlayerLPrefab, PlayerRPrefab, StonePrefab, _board;
+    GameObject TilePrefab, TileButtonPrefab, TileDoorPrefab, TileWallPrefab, TileEmptyPrefab,
+               PlayerLPrefab, PlayerRPrefab, StonePrefab, ShooterPrefab, MonsterPrefab, ChessPrefab, _board;
 
     //[SerializeField]
     public float rows, columns = 0;
 
     [HideInInspector]
-    public GameObject playerL, playerR ,Stone;
+    public GameObject playerL, playerR ,Stone, Monster, Chess;
 
     [HideInInspector]
     public List<GameObject> tiles = new List<GameObject>();
@@ -43,8 +44,7 @@ public class DungeonManager : MonoBehaviour
                 tiles.Add(tile);
 
 
-
-
+                //if (i == 1 && j == 9)
                 if (i == 1 && j == 2)
                 {
                     tile.GetComponent<DungeonTile>().HasPlayerL = true;
@@ -52,6 +52,7 @@ public class DungeonManager : MonoBehaviour
                     playerL.GetComponent<DungeonPlayerLeft>().Position = new Vector3(i, 0, j);
                 }
 
+                //if (i == 1 && j == 8)
                 if (i == 1 && j == 1)
                 {
                     tile.GetComponent<DungeonTile>().HasPlayerR = true;
@@ -107,7 +108,10 @@ public class DungeonManager : MonoBehaviour
                         tiles.Add(tile);
                     }
                 }
-
+                if(j == 5 && i == 9)
+                {
+                    Instantiate(ShooterPrefab, new Vector3(i, 1, j), this.transform.rotation);
+                }
                 if (i == 0 && j == 0)
                 {
                     tiles.Remove(tile);
@@ -132,6 +136,20 @@ public class DungeonManager : MonoBehaviour
                     var tileDoor = Instantiate(TileDoorPrefab, new Vector3(i, 0, j), this.transform.rotation, _board.transform);
                     tileDoor.GetComponent<DungeonTile>().Position = new Vector3(i, 0, j);
                     tiles.Add(tileDoor);
+                }
+                
+                if (i == 7 && j == 1)
+                {
+                    tile.GetComponent<DungeonTile>().HasMonster = true;
+                    Monster = Instantiate(MonsterPrefab, new Vector3(i, 0, j), this.transform.rotation);
+                    Monster.GetComponent<DungeonMonster>().Position = new Vector3(i, 0, j);
+                }
+
+                if (i == 9 && j == 0)
+                {
+                    tile.GetComponent<DungeonTile>().HasChess = true;
+                    Chess = Instantiate(ChessPrefab, new Vector3(i, 0, j), this.transform.rotation);
+                    Chess.GetComponent<DungeonChest>().Position = new Vector3(i, 0, j);
                 }
             }
         }

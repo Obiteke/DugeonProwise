@@ -28,6 +28,9 @@ public class DungeonPlayerRight : MonoBehaviour
     private float _timerLeft = 0.6f;
     private float _currTimerLeft;
 
+    private Vector3 JShoulderPosition;
+    private Vector3 JHandPosition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,9 +43,14 @@ public class DungeonPlayerRight : MonoBehaviour
     void Update()
     {
         _oldPosition = Position;
-        Vector3 JHandPosition = NuitrackManager.Users.Current.Skeleton.GetJoint(SkeletonScript.GetComponent<NativeAvatar>().typeJoint[9]).Position;
-        Vector3 JShoulderPosition = NuitrackManager.Users.Current.Skeleton.GetJoint(SkeletonScript.GetComponent<NativeAvatar>().typeJoint[5]).Position;
-        float speed = Vector3.Distance(JHandPosition, oldJP) / Time.deltaTime;
+        //Vector3 JHandPosition = NuitrackManager.Users.Current.Skeleton.GetJoint(SkeletonScript.GetComponent<NativeAvatar>().typeJoint[9]).Position;
+        //Vector3 JShoulderPosition = NuitrackManager.Users.Current.Skeleton.GetJoint(SkeletonScript.GetComponent<NativeAvatar>().typeJoint[5]).Position;
+
+        if (NuitrackManager.Users != null)
+        {
+            JHandPosition = NuitrackManager.Users.Current.Skeleton.GetJoint(SkeletonScript.GetComponent<NativeAvatar>().typeJoint[9]).Position;
+            JShoulderPosition = NuitrackManager.Users.Current.Skeleton.GetJoint(SkeletonScript.GetComponent<NativeAvatar>().typeJoint[5]).Position;
+        }
 
         if (!_timerEnd)
         {
@@ -145,7 +153,21 @@ public class DungeonPlayerRight : MonoBehaviour
                     Position = _oldPosition;
                     return;
                 }
-
+                if (tile.GetComponent<DungeonTile>().HasStone)
+                {
+                    DMScript.Stone.GetComponent<DungeonStone>().MoveStone(_oldPosition);
+                }
+                if (tile.GetComponent<DungeonTile>().HasMonster)
+                {
+                    Position = _oldPosition;
+                    FindObjectOfType<DungeonEndScreen>().YouLostScreen();
+                    return;
+                }
+                if (tile.GetComponent<DungeonTile>().HasChess)
+                {
+                    Destroy(DMScript.Chess);
+                    FindObjectOfType<DungeonEndScreen>().YouWonScreen();
+                }
                 tile.GetComponent<DungeonTile>().HasPlayerR = true;
                 transform.position = tile.GetComponent<DungeonTile>().transform.position;
             }
